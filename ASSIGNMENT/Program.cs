@@ -6,99 +6,80 @@ using System.Threading.Tasks;
 
 namespace Hospital
 {
-    class person
+    class player
     {
-       public string name;
-       public int age;
-    }
-    class doctor : person
-    {
-       public string specialization;
-        public string availability;
-       public void doctor_details()
+        public string PlayerName;
+        public int PlayerId;
+        public int PlayerScore;
+        public void player_input_details()
         {
-            Console.WriteLine("Enter the doctor name");
-            name = Console.ReadLine();
-            Console.WriteLine("Enter the age of the doctor");
-            age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the doctor specialization");
-            specialization = Console.ReadLine();
-            Console.WriteLine("Enter that doctor is available or not");
-            availability = Console.ReadLine();
+            Console.WriteLine("Enter the player name");
+            PlayerName = Console.ReadLine();
+            Console.WriteLine("Enter the player id");
+            PlayerId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the player score");
+            PlayerScore = Convert.ToInt32(Console.ReadLine());
         }
-        public void print_details()
+        public void player_output_details()
         {
-            Console.WriteLine(" name         " + "          age         " + "           specialization          " + "               availability");
-            Console.WriteLine(  name           +           age            +              specialization           +                  availability);
+            Console.WriteLine("player name     " + "          player id      " + "          player score");
+            Console.WriteLine(PlayerName + "\t\t\t\t\t\t\t\t" + PlayerId + "\t\t\t\t\t\t\t\t" + PlayerScore);
         }
-    }
-    class patient : person
-    {
-        public string disease;
-       public void patient_details()
-        {
-            Console.WriteLine("Enter the patient name");
-            name = Console.ReadLine();
-            Console.WriteLine("Enter the age of the patient");
-            age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the patient disease");
-            disease = Console.ReadLine();
-        }
-        public void display_details()
-        {
-            Console.WriteLine(" name         " + "          age         " + "           disease          " );
-            Console.WriteLine(  name           +            age           +             disease );
-        }
+
+
     }
 
-    class Program
+    class team
+    {
+        public string TeamName;
+        public int TeamId;
+        public player p = new player();
+
+
+        public void team_input_details()
+        {
+            Console.WriteLine("Enter the team name");
+            TeamName = Console.ReadLine();
+            Console.WriteLine("Enter the team id");
+            TeamId = Convert.ToInt32(Console.ReadLine());
+            p.player_input_details();
+
+        }
+        public void team_output_details()
+        {
+            Console.WriteLine("team name     " + "          team id      ");
+            Console.WriteLine(TeamName+"\t\t\t\t\t\t" + "\t\t\t\t\t\t"+ TeamId);
+            p.player_output_details();
+        }
+
+
+    }
+
+    class Sport
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("WELCOME TO NO1 HOSPITAL. WE ARE ALWAYS WITH YOU.");
-            Console.WriteLine("PRESS 1 FOR DOCTOR DETAILS.");
-            Console.WriteLine("PRESS 2 FOR PATIENT DETAILS.");
-            Console.WriteLine("PRESS 3 EXIT.");
-            int choice =Convert.ToInt32(Console.ReadLine());
-            switch(choice)
+            team t1 = new team();
+            team t2 = new team();
+            t1.team_input_details();
+            t2.team_input_details();
+            t1.team_output_details();
+            t2.team_output_details();
+            void result()
             {
-                case 1:
-                    {
-                        if (choice == 1)
-                        {
-                            doctor d = new doctor();
-                            d.doctor_details();
-                            doctor d1 = new doctor();
-                            d1.doctor_details();
-                            d.print_details();
-                            d1.print_details();
-                        }
-                        break;
-                           
-                    }
-                case 2:
-                    {
-                        if(choice==2)
-                        {
-                            patient p = new patient();
-                            p.patient_details();
-                            p.display_details();
-                            patient p1 = new patient();
-                            p1.patient_details();
-                            p.display_details();
-                            p1.display_details();
-                        }
-                        break;
-                    }
-                case 3:
-                    break;
+                if (t1.p.PlayerScore > t2.p.PlayerScore)
+                {
+                    Console.WriteLine("Team1 won the match");
+                }
+                if (t1.p.PlayerScore < t2.p.PlayerScore)
+                {
+                    Console.WriteLine("Team2 won the match");
+                }
             }
-            
-
-          
-           
-
+            result();
+            Console.ReadLine();
 
         }
     }
 }
+
